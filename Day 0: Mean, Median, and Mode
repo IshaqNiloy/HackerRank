@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for(int i = 0; i < n; i++){
+            arr[i] = sc.nextInt();
+        }
+        /*Mean*/
+        int sum = 0;
+        for(int i = 0; i < n; i++){
+            sum += arr[i]; 
+        }
+        System.out.println((double)sum/n);
+        /*Median*/
+        Arrays.sort(arr);
+        if(n % 2 != 0){
+            System.out.println((double)arr[n / 2]);
+        }else{
+            System.out.println((double)(arr[n / 2] + arr[n / 2 - 1]) / 2);
+        }
+        /*Mode*/
+        int count = 0;
+        int max = 0;
+        int temp, index = 0, mode_index = 0;
+
+        for(int i = 0; i < n; i++){
+            temp = arr[i];
+            count = 0;
+            for(int j = 0; j < n; j++){
+                if(arr[j] == temp){
+                    count ++;
+                    index = j;
+                }
+            }
+            if(count > max){
+                max = count;
+                mode_index = index;
+            }
+        }
+        System.out.println(arr[mode_index]);
+    }
+}
+
